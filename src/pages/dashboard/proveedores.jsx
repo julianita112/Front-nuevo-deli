@@ -289,7 +289,6 @@ export function Proveedores() {
     }
   };
   
-
   // Obtener proveedores actuales
   const indexOfLastProveedor = currentPage * proveedoresPerPage;
   const indexOfFirstProveedor = indexOfLastProveedor - proveedoresPerPage;
@@ -332,9 +331,6 @@ export function Proveedores() {
   style={{ width: '300px' }} // Ajusta el ancho del campo de búsqueda
 />
 </div>
-
-
-
           <div className="mb-1">
             <Typography variant="h5" color="blue-gray" className="mb-4">
               Lista de Proveedores
@@ -421,7 +417,6 @@ export function Proveedores() {
         </span>
     </label>
 </td>
-
                       <td className="px-6 py-2 whitespace-nowrap text-sm font-medium">
                         <div className="flex space-x-1">
                           <IconButton className="btnedit" size="sm" onClick={() => handleEdit(proveedor)} disabled={!proveedor.activo}>

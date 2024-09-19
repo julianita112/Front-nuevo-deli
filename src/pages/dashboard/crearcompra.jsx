@@ -255,7 +255,6 @@ export function CrearCompra({ handleClose, fetchCompras, proveedores, insumos })
     });
   };
   
-
   const handleRemoveDetalle = (index) => {
     const detalles = [...selectedCompra.detalleCompras];
     detalles.splice(index, 1);
@@ -274,8 +273,6 @@ export function CrearCompra({ handleClose, fetchCompras, proveedores, insumos })
 
   return (
 
-
-    
     <div className="flex-1 flex flex-col gap-4">
       <div className="flex gap-4 mb-4">
       <div className="flex flex-col gap-4 w-1/2 pr-4 bg-white rounded-lg shadow-sm p-4">
@@ -470,8 +467,6 @@ export function CrearCompra({ handleClose, fetchCompras, proveedores, insumos })
   </div>
 </div>
 </div>
-      
-
       <div className="mt-4 flex justify-end gap-4">
         <Button variant="text" className="btncancelarm" size="sm" onClick={handleClose}>
           Cancelar

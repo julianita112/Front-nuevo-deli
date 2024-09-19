@@ -203,7 +203,6 @@ export function Clientes() {
             style={{ width: '265px' }} // Ajusta el ancho del campo de búsqueda
           />
         </div>
-
               
               <div className="mb-1">
                 <Typography variant="h5" color="blue-gray" className="mb-4">

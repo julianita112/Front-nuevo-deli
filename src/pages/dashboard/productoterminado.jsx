@@ -258,10 +258,7 @@ export function ProductoTerminado() {
               value={search}
               onChange={handleSearchChange}
             />
-          </div>
-
-
-          
+          </div>       
           <div className="mb-1">
             <Typography variant="h5" color="blue-gray" className="mb-4">
               Lista de Productos

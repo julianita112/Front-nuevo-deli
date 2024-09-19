@@ -408,9 +408,7 @@ export function CrearPedido({ clientes, productos, fetchPedidos, onCancel }) {
   <div className="flex justify-end mt-4">
   <Typography variant="h6" color="blue-gray">
   Total de la Compra: ${(selectedPedido.total  || 0).toFixed(2)}
-  </Typography>
-            
-            
+  </Typography>      
           </div>
         </div>
       </div>

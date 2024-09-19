@@ -21,9 +21,9 @@ import axios from "../../utils/axiosConfig";
 import Swal from "sweetalert2";
 import 'jspdf-autotable';
 import { Producir } from './Producir';
-import { CrearVenta } from './CrearVenta'; // Importar el componente CrearVenta
-import { GenerarInformeVenta } from './GenerarInformeVenta'; // Importar el componente para generar informe de ventas
-import { ReporteVentas } from './ReporteVentas'; // Importamos el nuevo reporte de ventas
+import { CrearVenta } from './CrearVenta'; 
+import { GenerarInformeVenta } from './GenerarInformeVenta'; 
+import { ReporteVentas } from './ReporteVentas'; 
 
 // Configuración de Toast
 const Toast = Swal.mixin({
@@ -44,12 +44,11 @@ export function Ventas() {
   const [clientes, setClientes] = useState([]);
   const [productos, setProductos] = useState([]);
   const [pedidos, setPedidos] = useState([]);
-  const [showCrearVenta, setShowCrearVenta] = useState(false); // Estado para mostrar/ocultar formulario de crear venta
+  const [showCrearVenta, setShowCrearVenta] = useState(false);
   const [detailsOpen, setDetailsOpen] = useState(false);
-  const [cancelOpen, setCancelOpen] = useState(false); // Estado para controlar el modal de anulación
-  const [motivoAnulacion, setMotivoAnulacion] = useState(''); // Estado para el motivo de anulación
-  // Estado para controlar el formulario de informe
-  const [mostrarReporteVentas, setMostrarReporteVentas] = useState(false); // Nuevo estado para manejar la visibilidad del reporte
+  const [cancelOpen, setCancelOpen] = useState(false); 
+  const [motivoAnulacion, setMotivoAnulacion] = useState(''); 
+  const [mostrarReporteVentas, setMostrarReporteVentas] = useState(false); 
   const [mostrarInforme, setMostrarInforme] = useState(false);
   const [ventaToCancel, setVentaToCancel] = useState(null); 
   const [productionOpen, setProductionOpen] = useState(false);
@@ -78,13 +77,13 @@ export function Ventas() {
     fetchPedidos();
   }, []);
 
-  // Función para cancelar el informe
+
   const handleCancelarInforme = () => {
     setMostrarInforme(false);
   };
 
   const handleGenerarReporte = () => {
-    setMostrarReporteVentas(true); // Activar la generación de reporte
+    setMostrarReporteVentas(true); 
   };
 
   const fetchVentas = async () => {
@@ -172,7 +171,6 @@ export function Ventas() {
         return;
     }
 
-    // Verificar si la venta ya está anulada o desactivada
     if (venta.anulacion || !venta.activo) {
         Swal.fire({
             icon: 'error',
@@ -183,11 +181,9 @@ export function Ventas() {
     }
 
     if (!activo) {
-        // Si la venta está siendo anulada (activo === false), se solicita el motivo de anulación
         setVentaToCancel(id_venta);
         setCancelOpen(true);
     }
-    // Eliminamos la opción de volver a activar
   };
 
   const handleCancelVenta = async () => {
@@ -226,26 +222,21 @@ export function Ventas() {
     const doc = new jsPDF();
     doc.setFontSize(18);
   
-    // Agregar el logo en la parte superior izquierda
     const logo = "/img/delicremlogo.png";
     doc.addImage(logo, "JPEG", 10, 10, 30, 15);
-  
-    // Título del PDF centrado, alineado verticalmente con el logo
     doc.setFontSize(20);
     doc.text('Comprobante de Venta', 105, 20, { align: 'center' });
-  
-    // Información general de la venta
     doc.setFontSize(12);
-    doc.setTextColor(50, 50, 50); // Color gris oscuro para texto
+    doc.setTextColor(50, 50, 50);
     doc.text(`Número de Venta: ${venta.numero_venta}`, 20, 50);
     doc.text(`Fecha de Venta: ${new Date(venta.fecha_venta).toLocaleDateString()}`, 20, 58);
   
     // Información del cliente
     doc.setFontSize(14);
-    doc.setTextColor(0, 0, 0); // Negro para encabezados
+    doc.setTextColor(0, 0, 0); 
     doc.text('Información del Cliente', 20, 75);
     doc.setFontSize(12);
-    doc.setTextColor(80, 80, 80); // Gris para detalles del cliente
+    doc.setTextColor(80, 80, 80);
     doc.text(`Nombre: ${venta.cliente.nombre}`, 20, 85);
     doc.text(`Contacto: ${venta.cliente.contacto}`, 20, 93);
     doc.text(`Email: ${venta.cliente.email}`, 20, 101);
@@ -259,8 +250,6 @@ export function Ventas() {
   
     const detalles = Array.isArray(venta.detalleVentas) ? venta.detalleVentas : 
                      (Array.isArray(venta.detalles) ? venta.detalles : []);
-  
-    // Agregar tabla con detalles de los productos
     doc.autoTable({
       startY: 145,
       head: [['ID Producto', 'Cantidad', 'Precio Unitario', 'Subtotal']],
@@ -272,14 +261,14 @@ export function Ventas() {
       ]),
       theme: 'grid',
       styles: {
-        fillColor: [230, 230, 230], // Color gris claro para el fondo de la tabla
-        textColor: [0, 0, 0], // Negro para el texto
-        lineColor: [2, 0, 0], // Negro para las líneas
+        fillColor: [230, 230, 230], 
+        textColor: [0, 0, 0], 
+        lineColor: [2, 0, 0], 
         lineWidth: 0.1,
       },
       headStyles: {
-        fillColor: [174, 1, 126], // Color #AE017E para el encabezado
-        textColor: [255, 255, 255], // Blanco para el texto del encabezado
+        fillColor: [174, 1, 126], 
+        textColor: [255, 255, 255], 
       },
     });
   
@@ -290,15 +279,13 @@ export function Ventas() {
   
     // Información adicional
     doc.setFontSize(10);
-    doc.setTextColor(50, 50, 50); // Gris oscuro para información adicional
+    doc.setTextColor(50, 50, 50); 
     doc.text(`Fecha de Creación: ${new Date(venta.createdAt).toLocaleString()}`, 20, doc.internal.pageSize.height - 20);
     doc.text(`Última Actualización: ${new Date(venta.updatedAt).toLocaleString()}`, 20, doc.internal.pageSize.height - 10);
   
     doc.save(`Comprobante_Venta_${venta.numero_venta}.pdf`);
   };
   
-  
-
   const indexOfLastVenta = currentPage * ventasPerPage; 
   const indexOfFirstVenta = indexOfLastVenta - ventasPerPage; 
   const currentVentas = filteredVentas.slice(indexOfFirstVenta, indexOfLastVenta);
@@ -354,7 +341,7 @@ export function Ventas() {
           productos={productos}
           pedidos={pedidos}
           fetchVentas={fetchVentas}
-          onCancel={() => setShowCrearVenta(false)} // Cerrar el formulario
+          onCancel={() => setShowCrearVenta(false)} 
         />
         <div className="flex justify-end mt-6">
          
@@ -433,20 +420,16 @@ export function Ventas() {
     venta.activo ? 'bg-red-600 hover:bg-red-800' : 'bg-gray-400 cursor-not-allowed'
   } text-white rounded-sm px-1.5 py-0.5 transition h-7 w-16`}
   size="sm"
-  disabled={!venta.activo} // Desactivar el botón si la venta ya está anulada
+  disabled={!venta.activo} 
 >
   Anular
-</Button>
-
-</td>
-
-  
-                              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium flex gap-2">
-                                <IconButton 
-                                  className="btnvisualizar" 
-                                  size="sm" 
-                                  onClick={() => handleViewDetails(venta)} 
-                                  // Desactivar botón si la venta está desactivada
+    </Button>
+        </td>
+            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium flex gap-2">
+              <IconButton 
+                   className="btnvisualizar" 
+                              size="sm" 
+                                onClick={() => handleViewDetails(venta)}                             
                                 >
                                   <EyeIcon className="h-5 w-5" />
                                 </IconButton>
@@ -454,7 +437,7 @@ export function Ventas() {
                                   className="btnpdf" 
                                   size="sm" 
                                   onClick={() => generatePDF(venta)} 
-                                  disabled={!venta.activo} // Desactivar botón si la venta está desactivada
+                                  disabled={!venta.activo} 
                                 >
                                   <ArrowDownIcon className="h-5 w-5" />
                                 </IconButton>
@@ -532,9 +515,6 @@ export function Ventas() {
     </div>
   </Dialog>
 )}
-
-  
-
   
   <Dialog open={detailsOpen} handler={() => setDetailsOpen(false)} className="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-lg">
   <DialogHeader className="text-lg font-semibold text-gray-800 border-b border-gray-300">

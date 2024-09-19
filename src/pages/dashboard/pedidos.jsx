@@ -280,11 +280,8 @@ export function Pedidos() {
 >
   Anular
 </button>
-
-
-
-                          </td>
-                          <td className="px-6 py-2 whitespace-nowrap text-right text-sm font-medium">
+     </td>
+            <td className="px-6 py-2 whitespace-nowrap text-right text-sm font-medium">
                             <div className="flex space-x-1">
                               <IconButton
                                 className="btnedit"

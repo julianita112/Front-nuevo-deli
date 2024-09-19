@@ -320,10 +320,7 @@ export function CrearFichaTecnica({ handleClose, fetchFichas, productos, insumos
                     }}
                   />
                   {errors[`cantidad_${index}`] && <p className="text-red-500 text-xs mt-1">{errors[`cantidad_${index}`]}</p>}
-                </div>
-
-                
-
+                </div>       
                 <div className="flex items-center justify-center w-10">
                   <IconButton
                     color="red"

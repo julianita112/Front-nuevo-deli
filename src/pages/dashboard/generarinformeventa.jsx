@@ -167,10 +167,10 @@ export function GenerarInformeVenta({ onCancel }) {
         label: 'Cantidad Vendida',
         data: productosData,
         backgroundColor: [
-          '#AE017E', // Fucsia
-          '#7A0177', // Morado
-          '#49006A', // Negro
-          // Puedes agregar más colores similares si es necesario
+          '#AE017E', 
+          '#7A0177',
+          '#49006A', 
+         
         ],
         
       },
@@ -187,16 +187,16 @@ export function GenerarInformeVenta({ onCancel }) {
         label: 'Total Comprado',
         data: clientesData,
         backgroundColor: [
-          '#AE017E', // Magenta Oscuro
-          '#7A0177', // Morado Intenso
-          '#49006A', // Púrpura Oscuro
-          // Puedes añadir más colores similares si es necesario
+          '#AE017E', 
+          '#7A0177', 
+          '#49006A', 
+          
         ],
         borderColor: [
-          '#AE017E', // Magenta Oscuro
-          '#7A0177', // Morado Intenso
-          '#49006A', // Púrpura Oscuro
-          // Puedes añadir más colores similares si es necesario
+          '#AE017E', 
+          '#7A0177', 
+          '#49006A', 
+        
         ],
         borderWidth: 1,
       },

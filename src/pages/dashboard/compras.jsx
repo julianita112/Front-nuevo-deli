@@ -14,14 +14,14 @@ import { PlusIcon, EyeIcon } from "@heroicons/react/24/solid";
 import { useState, useEffect } from "react";
 import axios from "../../utils/axiosConfig";
 import Swal from "sweetalert2";
-import { CrearCompra } from "./CrearCompra"; // Importa el nuevo componente
-import { ReporteCompras } from "./ReporteCompras"; // Importa el nuevo componente para generar el reporte
-import { GenerarInforme } from "./GenerarInforme"; // Importa el nuevo componente de Generar Informe
+import { CrearCompra } from "./CrearCompra";
+import { ReporteCompras } from "./ReporteCompras"; 
+import { GenerarInforme } from "./GenerarInforme"; 
 
 export function Compras() {
   const [compras, setCompras] = useState([]);
   const [filteredCompras, setFilteredCompras] = useState([]);
-  const [showForm, setShowForm] = useState(false); // Estado para controlar la vista del formulario
+  const [showForm, setShowForm] = useState(false); 
   const [proveedores, setProveedores] = useState([]);
   const [insumos, setInsumos] = useState([]);
   const [selectedCompra, setSelectedCompra] = useState({
@@ -29,19 +29,19 @@ export function Compras() {
     fecha_compra: "",
     fecha_registro: "",
     estado: "Completado",
-    detalleCompras: [], // Aseguramos que esto sea un array vacío por defecto
+    detalleCompras: [], 
     proveedorCompra: { nombre: "", contacto: "" },
     total: 0,
   });
-  const [showDetails, setShowDetails] = useState(false); // Estado para controlar el modal de detalles
+  const [showDetails, setShowDetails] = useState(false); 
   const [currentPage, setCurrentPage] = useState(1);
   const [comprasPerPage] = useState(10);
   const [search, setSearch] = useState("");
-  const [cancelOpen, setCancelOpen] = useState(false); // Estado para controlar el modal de anulación
-  const [motivoAnulacion, setMotivoAnulacion] = useState(''); // Estado para el motivo de anulación
-  const [compraToCancel, setCompraToCancel] = useState(null); // Estado para la compra a cancelar
-  const [mostrarReporte, setMostrarReporte] = useState(false); // Estado para mostrar el reporte
-  const [mostrarInforme, setMostrarInforme] = useState(false); // Estado para mostrar el informe
+  const [cancelOpen, setCancelOpen] = useState(false); 
+  const [motivoAnulacion, setMotivoAnulacion] = useState(''); 
+  const [compraToCancel, setCompraToCancel] = useState(null);
+  const [mostrarReporte, setMostrarReporte] = useState(false); 
+  const [mostrarInforme, setMostrarInforme] = useState(false); 
 
   const Toast = Swal.mixin({
     toast: true,
@@ -265,11 +265,7 @@ export function Compras() {
                   className="ml-[14rem] border border-gray-300 rounded-md focus:border-blue-500 appearance-none shadow-none py-2 px-4 text-sm" // Ajusta el padding vertical y horizontal
                   style={{ width: '265px' }} 
                 />
-              </div>
-
-
-
-              
+              </div>              
               <div className="mb-1">
                 <Typography variant="h5" color="blue-gray" className="mb-4">
                   Lista de Compras
@@ -311,13 +307,8 @@ export function Compras() {
 >
   Anular
 </Button>
-
-
-
-
-</td>
-
-                        </tr>
+             </td>
+                </tr>
                       ))}
                     </tbody>
                   </table>

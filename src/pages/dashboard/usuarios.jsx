@@ -177,8 +177,6 @@ export function Usuarios() {
   
     if (result.isConfirmed) {
       try {
-        // Aquí puedes realizar una verificación adicional si es necesario
-        // Por ejemplo, si se quiere desactivar un usuario, podrías verificar si existen condiciones para no permitirlo
   
         await axios.patch(`http://localhost:3000/api/usuarios/${id_usuario}/estado`, { activo: !activo });
         fetchUsuarios();
@@ -202,7 +200,6 @@ export function Usuarios() {
       <div className="absolute inset-0 h-full w-full bg-white-900/75" />
       </div>
 
-
       <Card className="mx-3 -mt-16 mb-6 lg:mx-4 border border-blue-gray-100">
         <CardBody className="p-4">
         <div className="flex items-center justify-between mb-6">
@@ -212,7 +209,7 @@ export function Usuarios() {
   color="green" 
   size="sm" 
   startIcon={<PlusIcon className="h-20 w-4" />} 
-  style={{ width: '150px' }}  // Ajusta el ancho aquí
+  style={{ width: '150px' }} 
 >
   Crear Usuario
 </Button>
@@ -223,13 +220,10 @@ export function Usuarios() {
   value={search}
   onChange={handleSearchChange}
   className="ml-[28rem] border border-gray-300 rounded-md focus:border-blue-500 appearance-none shadow-none py-2 px-4 text-sm" // Ajusta el padding vertical y horizontal
-  style={{ width: '265px' }} // Ajusta el ancho del campo de búsqueda
+  style={{ width: '265px' }} 
 />
 </div>
-
-
-
-          <div className="mb-1">
+        <div className="mb-1">
             <Typography variant="h5" color="blue-gray" className="mb-4">
               Lista de Usuarios
             </Typography>

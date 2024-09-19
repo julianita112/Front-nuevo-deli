@@ -41,7 +41,6 @@ export function ReporteCompras() {
     }
   };
 
-  // Llamar la función de generar reporte cuando se carga el componente
   React.useEffect(() => {
     generarReporte();
   }, []);

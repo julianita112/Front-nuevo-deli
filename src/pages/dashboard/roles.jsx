@@ -1,5 +1,3 @@
-
-
 import {
   Card,
   CardBody,
@@ -19,8 +17,6 @@ import { useState, useEffect } from "react";
 import axios from "../../utils/axiosConfig";
 import Swal from 'sweetalert2';
 
-
-// Definir el Toast
 const Toast = Swal.mixin({
   toast: true,
   position: "top-end",
@@ -32,7 +28,6 @@ const Toast = Swal.mixin({
     toast.onmouseleave = Swal.resumeTimer;
   }
 });
-
 
 export function Roles() {
   const [roles, setRoles] = useState([]);
@@ -51,12 +46,10 @@ export function Roles() {
   const [search, setSearch] = useState("");
   const [errors, setErrors] = useState({ nombre: "", permisos: "" });
 
-
   useEffect(() => {
     fetchRoles();
     fetchPermisos();
   }, []);
-
 
   const fetchRoles = async () => {
     try {
@@ -68,7 +61,6 @@ export function Roles() {
     }
   };
 
-
   const fetchPermisos = async () => {
     try {
       const response = await axios.get("http://localhost:3000/api/permisos");
@@ -78,11 +70,9 @@ export function Roles() {
     }
   };
 
-
   useEffect(() => {
     filterRoles();
   }, [search, roles]);
-
 
   const filterRoles = () => {
     const filtered = roles.filter((role) =>
@@ -91,39 +81,35 @@ export function Roles() {
     setFilteredRoles(filtered);
   };
 
-
   const handleOpen = () => {
     setOpen(!open);
   
-    if (!open) { // Si el modal se está cerrando, limpiar los errores
+    if (!open) { 
       setErrors({ nombre: "", permisos: "" });
     }
   };
   
   const handleDetailsOpen = () => setDetailsOpen(!detailsOpen);
 
-
   const handleEdit = (role) => {
     setSelectedRole({
       ...role,
       permisosRol: role.permisosRol ? role.permisosRol.map(p => p.id_permiso) : [],
-      activo: role.activo, // Set activo state when editing
+      activo: role.activo,
     });
     setEditMode(true);
     handleOpen();
   };
 
-
   const handleCreate = () => {
     setSelectedRole({
       nombre: "",
       permisosRol: [],
-      activo: true, // Default value when creating a new role
+      activo: true, 
     });
     setEditMode(false);
     handleOpen();
   };
-
 
   const handleDelete = async (role) => {
     const result = await Swal.fire({
@@ -136,7 +122,6 @@ export function Roles() {
       confirmButtonText: 'Sí, eliminar',
       cancelButtonText: 'Cancelar'
     });
-
 
     if (result.isConfirmed) {
       try {
@@ -193,9 +178,6 @@ export function Roles() {
     return valid;
   };
   
-  
-
-
   const handleSave = async () => {
     if (!validateForm()) return;
 
@@ -230,7 +212,6 @@ export function Roles() {
     }
   };
 
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setSelectedRole({ ...selectedRole, [name]: value });
@@ -249,21 +230,18 @@ export function Roles() {
         roles.some(
           (role) =>
             role.nombre.toLowerCase() === value.trim().toLowerCase() &&
-            role.id_rol !== selectedRole.id_rol // Ignorar el rol actual si está en modo edición
+            role.id_rol !== selectedRole.id_rol 
         )
       ) {
         newErrors.nombre = "Ya existe un rol con este nombre.";
       } else {
-        newErrors.nombre = ""; // Eliminar el mensaje de error si la validación es correcta
+        newErrors.nombre = ""; 
       }
   
       setErrors(newErrors);
     }
   };
   
-  
-
-
   const handlePermissionChange = (id_permiso) => {
     const { permisosRol } = selectedRole;
     if (permisosRol.includes(id_permiso)) {
@@ -273,11 +251,9 @@ export function Roles() {
     }
   };
 
-
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
   };
-
 
   const handleViewDetails = (role) => {
     setSelectedRole({
@@ -286,7 +262,6 @@ export function Roles() {
     });
     handleDetailsOpen();
   };
-
 
   const toggleActivo = async (id_rol, activo) => {
     const result = await Swal.fire({
@@ -302,8 +277,7 @@ export function Roles() {
   
     if (result.isConfirmed) {
       try {
-        if (activo) { // Solo verificamos si intentamos desactivar el rol
-          // Verificar si existen usuarios con el rol que se intenta desactivar
+        if (activo) { 
           const response = await axios.get(`http://localhost:3000/api/usuarios`);
           const usuariosConRol = response.data.filter(usuario => usuario.id_rol === id_rol);
   
@@ -312,15 +286,14 @@ export function Roles() {
               icon: 'warning',
               title: 'No se puede desactivar el rol',
               text: `Hay ${usuariosConRol.length} usuario(s) con este rol asignado.`,
-              confirmButtonColor: '#A62A64', // Color de confirmación
-              background: '#fff', // Color de fondo
-              confirmButtonText: 'Aceptar' // Texto del botón de confirmación
+              confirmButtonColor: '#A62A64', 
+              background: '#fff', 
+              confirmButtonText: 'Aceptar' 
             });
             return;
           }
         }
   
-        // Si no hay usuarios con el rol, o si se está activando el rol, proceder con el cambio de estado
         await axios.patch(`http://localhost:3000/api/roles/${id_rol}/estado`, { activo: !activo });
         fetchRoles();
         Toast.fire({
@@ -336,20 +309,16 @@ export function Roles() {
       }
     }
   };
-
   // Obtener roles actuales
   const indexOfLastRole = currentPage * rolesPerPage;
   const indexOfFirstRole = indexOfLastRole - rolesPerPage;
   const currentRoles = filteredRoles.slice(indexOfFirstRole, indexOfLastRole);
-
 
   const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(filteredRoles.length / rolesPerPage); i++) {
     pageNumbers.push(i);
   }
 
-
-  // Cambiar de página
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
 
@@ -359,13 +328,12 @@ export function Roles() {
   <div className="absolute inset-0 h-full w-full bg-white-800/75" />
 </div>
 
-
 <Card className="mx-3 -mt-16 mb-6 lg:mx-4 border border-blue-gray-100">
   <CardBody className="p-4">
   <div className="flex items-center justify-between mb-6">
   <Button 
     onClick={handleCreate} 
-    className="btnagregar " // Ajusta el ancho horizontal del botón
+    className="btnagregar"
     size="sm" 
     startIcon={<PlusIcon  />}
   >
@@ -377,10 +345,9 @@ export function Roles() {
   value={search}
   onChange={handleSearchChange}
   className="ml-[28rem] border border-gray-300 rounded-md focus:border-blue-500 appearance-none shadow-none py-2 px-4 text-sm" // Ajusta el padding vertical y horizontal
-  style={{ width: '250px' }} // Ajusta el ancho del campo de búsqueda
+  style={{ width: '250px' }} 
 />
 </div>
-
           <div className="mb-1">
             <Typography variant="h5" color="blue-gray" className="mb-4">
               Lista de Roles
@@ -425,9 +392,6 @@ export function Roles() {
                       <IconButton className="btnedit" size="sm" onClick={() => handleEdit(role)} disabled={!role.activo}>
                         <PencilIcon className="h-5 w-5" />
                       </IconButton>
-                      {/* <IconButton className="btncancelarinsumo" size="sm" onClick={() => handleDelete(role)} disabled={!role.activo}>
-                        <TrashIcon className="h-5 w-5" />
-                      </IconButton> */}
                       <IconButton className="btnvisualizar" size="sm" onClick={() => handleViewDetails(role)} disabled={!role.activo}>
                         <EyeIcon className="h-5 w-5" />
                       </IconButton>
@@ -453,7 +417,6 @@ export function Roles() {
           </div>
         </CardBody>
       </Card>
-
 
       <Dialog open={open} handler={handleOpen} className="custom-modal">
         <DialogHeader>{editMode ? "Visualizar Rol" : "Crear Rol"}</DialogHeader>
@@ -493,7 +456,6 @@ export function Roles() {
           </Button>
         </DialogFooter>
       </Dialog>
-
 
       <Dialog
   open={detailsOpen}
