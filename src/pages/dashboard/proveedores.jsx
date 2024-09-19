@@ -274,7 +274,7 @@ export function Proveedores() {
       try {
         // Realizar la solicitud para cambiar el estado del proveedor
         await axios.patch(`http://localhost:3000/api/proveedores/${id_proveedor}/estado`, { activo: !activo });
-        fetchProveedores(); // Refrescar la lista de proveedores
+        fetchProveedores(); 
         Toast.fire({
           icon: 'success',
           title: `El proveedor ha sido ${!activo ? 'activado' : 'desactivado'} correctamente.`,
@@ -336,7 +336,7 @@ export function Proveedores() {
 
 
           <div className="mb-1">
-            <Typography variant="h6" color="blue-gray" className="mb-4">
+            <Typography variant="h5" color="blue-gray" className="mb-4">
               Lista de Proveedores
             </Typography>
             <div className="overflow-x-auto">

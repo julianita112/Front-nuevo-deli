@@ -96,7 +96,7 @@ export function OrdenesProducidas() {
   return (
     <Card className="mx-3 -mt-16 mb-6 lg:mx-4 border border-blue-gray-100">
       <CardBody className="p-4">
-        <Typography variant="h6" color="blue-gray" className="mb-4">
+        <Typography variant="h5" color="blue-gray" className="mb-4">
           Lista de Órdenes Producidas
         </Typography>
         <div className="overflow-x-auto">

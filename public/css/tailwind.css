@@ -31,6 +31,7 @@
 }
 
 .btnagregarm {
+  text-transform: none;
   background: linear-gradient(145deg, #255b47, #6aa858) ;
   color: white;
   
@@ -63,6 +64,7 @@
 .cancelarinformes {
   background: linear-gradient(145deg,#080202f2, #212121f2);
   color: white; /* Color del texto */
+  text-transform: none;
   margin-right: 20px; /* Ajusta el valor según tus necesidades */
 }
 
@@ -73,6 +75,7 @@
 .btncancelarm {
   background: linear-gradient(145deg, #af040af2, #f30008f2);
   color: white;
+  text-transform: none;
   margin-right: 10px; /* Ajusta el valor según el espacio deseado */
 }
 

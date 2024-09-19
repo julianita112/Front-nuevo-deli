@@ -141,7 +141,7 @@ export function Roles() {
     if (result.isConfirmed) {
       try {
         await axios.delete(`http://localhost:3000/api/roles/${role.id_rol}`);
-        fetchRoles(); // Refrescar la lista de roles
+        fetchRoles(); 
         Toast.fire({
           icon: "success",
           title: "Rol eliminado exitosamente."
@@ -222,7 +222,7 @@ export function Roles() {
           title: "Rol creado exitosamente."
         });
       }
-      fetchRoles(); // Refrescar la lista de roles
+      fetchRoles(); 
       handleOpen();
     } catch (error) {
       console.error("Error saving role:", error);
@@ -382,7 +382,7 @@ export function Roles() {
 </div>
 
           <div className="mb-1">
-            <Typography variant="h6" color="blue-gray" className="mb-4">
+            <Typography variant="h5" color="blue-gray" className="mb-4">
               Lista de Roles
             </Typography>
             <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">

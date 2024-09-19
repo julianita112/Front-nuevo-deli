@@ -263,8 +263,8 @@ export function ProductoTerminado() {
 
           
           <div className="mb-1">
-            <Typography variant="h6" color="blue-gray" className="mb-4">
-              Productos terminados
+            <Typography variant="h5" color="blue-gray" className="mb-4">
+              Lista de Productos
             </Typography>
             <div className="overflow-x-auto">
               <table className="min-w-full divide-y divide-gray-200">

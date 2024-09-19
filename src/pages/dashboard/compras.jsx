@@ -271,7 +271,7 @@ export function Compras() {
 
               
               <div className="mb-1">
-                <Typography variant="h6" color="blue-gray" className="mb-4">
+                <Typography variant="h5" color="blue-gray" className="mb-4">
                   Lista de Compras
                 </Typography>
                 <div className="overflow-x-auto">

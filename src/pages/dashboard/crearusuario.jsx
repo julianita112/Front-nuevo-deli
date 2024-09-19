@@ -210,11 +210,11 @@ const CrearUsuario = ({
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div className="col-span-1">
             <Input
-              label="Nombre"
+              label="Nombres y Apellidos"
               name="nombre"
               value={selectedUser.nombre}
               onChange={handleChange}
-              error={!!formErrors.nombre}
+              
               required
             />
             {formErrors.nombre && <p className="text-red-500 text-xs mt-1">{formErrors.nombre}</p>}
@@ -226,7 +226,7 @@ const CrearUsuario = ({
               name="email"
               value={selectedUser.email}
               onChange={handleChange}
-              error={!!formErrors.email}
+             
               required
             />
             {formErrors.email && <p className="text-red-500 text-xs mt-1">{formErrors.email}</p>}
@@ -240,7 +240,7 @@ const CrearUsuario = ({
                 name="password"
                 value={selectedUser.password}
                 onChange={handleChange}
-                error={!!formErrors.password}
+               
                 required
               />
               {formErrors.password && <p className="text-red-500 text-xs mt-1">{formErrors.password}</p>}
@@ -352,12 +352,9 @@ const CrearUsuario = ({
         >
           Cancelar
         </Button>
-        <Button
-          color="blue"
-          onClick={handleSave}
-          className="btnagregarm" size="sm"
+        <Button onClick={handleSave} className="btnagregarm" size="sm"
         >
-          Guardar
+         {editMode ? "Guardar Cambios" : "Crear Usuario"}
         </Button>
       </DialogFooter>
     </Dialog>

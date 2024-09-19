@@ -262,16 +262,16 @@ const handleProducirWithConfirmation = async (id_orden) => {
           <OrdenesInactivas />
         ) : (
           <Card className="mx-3 -mt-16 mb-6 lg:mx-4 border border-blue-gray-100">
-            <CardBody className="p-4">
+            <CardBody className="p-6">
               <Input
                 type="text"
                 placeholder="Buscar por número de orden..."
                 value={search}
                 onChange={handleSearchChange}
-                className="mb-6"
+                className="mb-20"
               />
-              <div className="mb-1">
-                <Typography variant="h6" color="blue-gray" className="mb-4">
+              <div className="mb-3">
+                <Typography variant="h5" color="blue-gray" className="mb-4">
                   Lista de Órdenes de Producción
                 </Typography>
                 <div className="overflow-x-auto">

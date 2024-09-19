@@ -140,7 +140,7 @@ const allRoutes = [
         element: <ProductoTerminado />,
       },
       {
-        icon: <NumberedListIcon {...icon} />,
+        icon: <InboxStackIcon {...icon} />,
         name: "Ordenes de Producción",
         path: "/produccion",
         element: <OrdenesProduccion />,

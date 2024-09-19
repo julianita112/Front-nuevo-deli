@@ -135,9 +135,8 @@ export function CategoriaInsumos() {
 
   const handleSave = async () => {
     try {
-      const regexNombre = /^[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+$/; // Solo letras y espacios
-      const regexDescripcion = /^.{2,50}$/; // De 2 a 50 caracteres
-      const errors = {};
+      const regexNombre = /^[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+$/; 
+      const regexDescripcion = /^.{2,50}$/; 
 
       if (!selectedCategoria.nombre.trim()) {
         errors.nombre = "Por favor, ingrese el nombre de la categoría de insumos.";
@@ -210,8 +209,8 @@ export function CategoriaInsumos() {
   
     // Validaciones en tiempo real
     const newErrors = { ...errors };
-    const regexNombre = /^[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+$/; // Solo letras y espacios
-    const regexDescripcion = /^.{5,70}$/; // Entre 5 y 70 caracteres
+    const regexNombre = /^[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+$/; 
+    const regexDescripcion = /^.{5,70}$/; // 
   
     if (name === "nombre") {
       if (!value.trim()) {
@@ -224,7 +223,7 @@ export function CategoriaInsumos() {
         newErrors.nombre = "El nombre solo puede contener letras y espacios.";
       } else if (categorias.some(categoria =>
         categoria.nombre.toLowerCase() === value.toLowerCase() &&
-        (!editMode || categoria.id_categoria !== selectedCategoria.id_categoria) // No comparar la categoría actual en modo edición
+        (!editMode || categoria.id_categoria !== selectedCategoria.id_categoria) 
       )) {
         newErrors.nombre = "El nombre de la categoría ya existe.";
       } else {
@@ -276,8 +275,8 @@ export function CategoriaInsumos() {
   
     if (result.isConfirmed) {
       try {
-        if (categoria.activo) { // Solo verificamos si intentamos desactivar la categoría
-          // Verificar si existen insumos asociados a la categoría que se intenta desactivar
+        if (categoria.activo) { 
+         
           const response = await axios.get(`http://localhost:3000/api/insumos?categoria_id=${categoria.id_categoria}`);
           const insumosAsociados = response.data;
   
@@ -294,7 +293,7 @@ export function CategoriaInsumos() {
           }
         }
   
-        // Si no hay insumos asociados, o si se está activando la categoría, proceder con el cambio de estado
+       
         await axios.patch(`http://localhost:3000/api/categorias_insumo/${categoria.id_categoria}/estado`, { activo: !categoria.activo });
         fetchCategorias();
         Swal.fire({
@@ -341,11 +340,11 @@ export function CategoriaInsumos() {
   <div className="flex items-center justify-between mb-6">
   <Button 
     onClick={handleCreate} 
-    className="btnagregar w-40" // Ajusta el ancho horizontal del botón
+    className="btnagregar w-40" 
     size="sm" 
    
     startIcon={<PlusIcon className="h-20 w-4" />} 
-    style={{ width: '200px' }}  // Ajusta el ancho aquí
+    style={{ width: '200px' }}  
   >
     Crear Categoría
   </Button>
@@ -357,14 +356,14 @@ export function CategoriaInsumos() {
   value={search}
   onChange={handleSearchChange}
   className="ml-[28rem] border border-gray-300 rounded-md focus:border-blue-500 appearance-none shadow-none py-2 px-4 text-sm" // Ajusta el padding vertical y horizontal
-  style={{ width: '265px' }} // Ajusta el ancho del campo de búsqueda
+  style={{ width: '265px' }}
 />
 </div>
 
 
           
           <div className="mb-1">
-            <Typography variant="h6" color="blue-gray" className="mb-4">
+            <Typography variant="h5" color="blue-gray" className="mb-4">
               Lista de Categorías de Insumo
             </Typography>
             <div className="overflow-x-auto">
